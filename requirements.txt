@@ -100,3 +100,10 @@ urllib3
 wcwidth
 Werkzeug
 wrapt
+
+#tensorflow
+#keras
+onnx2pytorch
+ml_dtypes>=0.5.0
+
+onnx
