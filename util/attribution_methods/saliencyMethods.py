@@ -5,6 +5,7 @@ import torch
 # This file implements IG (LIG) and IDG
 # For the attributions, the input is a normalized tensor image (1, 3, 224, 224)
 
+
 def IG(input, model, steps, batch_size, alpha_star, baseline, device, target_class):
     if (steps % batch_size != 0):
         print("steps must be evenly divisible by batch size: " + str(batch_size) + "!")
