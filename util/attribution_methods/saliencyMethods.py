@@ -1,7 +1,10 @@
+from time import sleep
+
 import torch
 
 # This file implements IG (LIG) and IDG
 # For the attributions, the input is a normalized tensor image (1, 3, 224, 224)
+
 
 def IG(input, model, steps, batch_size, alpha_star, baseline, device, target_class):
     if (steps % batch_size != 0):
@@ -135,8 +138,21 @@ def getGradientsParallel(inputs, model, target_class):
     scores = output[:, target_class]
 
     gradients = torch.autograd.grad(scores, inputs, grad_outputs = torch.ones_like(scores))[0]
-
-    return gradients.detach().squeeze(), scores.detach().squeeze()
+    
+    # return gradients.detach().squeeze(), scores.detach().squeeze()
+    # gradients_result = gradients.detach().squeeze()
+    gradients_result = gradients.detach().squeeze(0)
+    # scores_result = scores.detach().squeeze()
+    scores_result = scores.detach().squeeze(0)
+    # print(f"gradients_result.shape: {gradients_result.shape}", flush=True)
+    # print(f"scores_result.shape: {scores_result.shape}", flush=True)
+    # TODO: remove this sleep. It's here to allow the print statements to be flushed before
+    #  an exception is raised and the program exits.
+    # sleep(1)
+    return gradients_result, scores_result
+    # squeeze only the batch dimension (not all dimensions of size 1, which will
+    # have unintended consequences for images with 1 channel, i.e. grayscale)
+    # return gradients.detach().squeeze(0), scores.detach().squeeze(0)
 
 # returns the logit outputs for a batch of images
 def getPredictionParallel(inputs, model, target_class):
