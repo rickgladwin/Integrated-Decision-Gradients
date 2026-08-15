@@ -33,7 +33,8 @@ matplotlib-inline==0.1.7
 mpmath==1.3.0
 nest-asyncio==1.6.0
 networkx==3.3
-numpy==1.26.0
+#numpy==1.26.0
+#numpy==1.26.2
 nvidia-cublas-cu12==12.4.2.65
 nvidia-cuda-cupti-cu12==12.4.99
 nvidia-cuda-nvrtc-cu12==12.4.99
