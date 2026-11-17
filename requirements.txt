@@ -107,3 +107,5 @@ onnx2pytorch
 ml_dtypes>=0.5.0
 
 onnx
+
+tensorflow
